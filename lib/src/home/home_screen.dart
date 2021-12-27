@@ -25,6 +25,7 @@ class HomeScreen extends StatelessWidget {
 
   Widget _buildFindPropertyView(BuildContext context) {
     return Card(
+      elevation: 3.0,
       child: ListTile(
         leading: Image.asset('assets/icons/search.png'),
         title: Text('Find Property', style: Theme.of(context).textTheme.headline2),
@@ -59,6 +60,7 @@ class HomeScreen extends StatelessWidget {
         mainAxisSpacing: 8.0,
         children: [
           Card(
+            elevation: 3.0,
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
@@ -70,6 +72,7 @@ class HomeScreen extends StatelessWidget {
             ),
           ),
           Card(
+            elevation: 3.0,
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
@@ -82,6 +85,7 @@ class HomeScreen extends StatelessWidget {
             ),
           ),
           Card(
+            elevation: 3.0,
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
@@ -93,6 +97,7 @@ class HomeScreen extends StatelessWidget {
             ),
           ),
           Card(
+            elevation: 3.0,
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
@@ -105,6 +110,7 @@ class HomeScreen extends StatelessWidget {
             ),
           ),
           Card(
+            elevation: 3.0,
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
@@ -117,6 +123,7 @@ class HomeScreen extends StatelessWidget {
             ),
           ),
           Card(
+            elevation: 3.0,
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
@@ -129,6 +136,7 @@ class HomeScreen extends StatelessWidget {
             ),
           ),
           Card(
+            elevation: 3.0,
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
@@ -141,6 +149,7 @@ class HomeScreen extends StatelessWidget {
             ),
           ),
           Card(
+            elevation: 3.0,
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
@@ -153,6 +162,7 @@ class HomeScreen extends StatelessWidget {
             ),
           ),
           Card(
+            elevation: 3.0,
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
@@ -165,6 +175,7 @@ class HomeScreen extends StatelessWidget {
             ),
           ),
           Card(
+            elevation: 3.0,
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,

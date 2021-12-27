@@ -3,6 +3,7 @@ import 'package:property_app/src/auth/views/auth_screen.dart';
 import 'package:property_app/src/auth/views/forgot_password_screen.dart';
 import 'package:property_app/src/auth/views/login_screen.dart';
 import 'package:property_app/src/auth/views/sign_up_screen.dart';
+import 'package:property_app/src/chat/chat_message_screen.dart';
 import 'package:property_app/src/home/home_screen.dart';
 import 'package:property_app/src/property/property_detail_screen.dart';
 import 'package:property_app/src/property/property_filter_screen.dart';
@@ -40,5 +41,9 @@ final List<GetPage<dynamic>> customRoutes = [
   GetPage(
     name: PropertyDetailScreen.routeName,
     page: () => const PropertyDetailScreen(),
+  ),
+  GetPage(
+    name: ChatMsgScreen.routeName,
+    page: () => const ChatMsgScreen(),
   ),
 ];

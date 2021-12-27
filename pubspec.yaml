@@ -32,6 +32,7 @@ dependencies:
   get: ^4.6.1
   dio: ^4.0.4
   intl: ^0.17.0
+  bubble: ^1.2.1
   timeago: ^3.1.0
   get_storage: ^2.0.3
   fluttertoast: ^8.0.8

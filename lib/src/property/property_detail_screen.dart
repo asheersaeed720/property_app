@@ -1,6 +1,8 @@
 import 'package:carousel_slider/carousel_options.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:property_app/src/chat/chat_message_screen.dart';
 import 'package:property_app/utils/app_theme.dart';
 import 'package:property_app/widgets/custom_button.dart';
 
@@ -61,7 +63,9 @@ class _PropertyDetailScreenState extends State<PropertyDetailScreen> {
             CustomButton(
               width: MediaQuery.of(context).size.width / 2.2,
               btnTxt: 'Chat',
-              onPressed: () {},
+              onPressed: () {
+                Get.toNamed(ChatMsgScreen.routeName);
+              },
             ),
           ],
         ),
