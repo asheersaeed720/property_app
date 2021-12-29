@@ -3,7 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:property_app/src/auth/views/forgot_password_screen.dart';
 import 'package:property_app/src/auth/views/sign_up_screen.dart';
-import 'package:property_app/src/tab_screen.dart';
+import 'package:property_app/src/home/home_screen.dart';
 import 'package:property_app/utils/app_theme.dart';
 import 'package:property_app/widgets/custom_textfield.dart';
 import 'package:rounded_loading_button/rounded_loading_button.dart';
@@ -124,7 +124,7 @@ class _LogInScreenState extends State<LogInScreen> {
                       FocusScope.of(context).unfocus();
                       // Get.toNamed(TabScreen.routeName);
                       Navigator.of(context).pushAndRemoveUntil(
-                        MaterialPageRoute(builder: (context) => const TabScreen()),
+                        MaterialPageRoute(builder: (context) => const HomeScreen()),
                         (route) => false,
                       );
 

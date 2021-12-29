@@ -22,6 +22,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) => GetMaterialApp(
         title: 'Property App',
         debugShowCheckedModeBanner: false,
+        // darkTheme: ThemeData.dark(),
         theme: ThemeData(
           primaryColor: AppTheme.primary,
           errorColor: Colors.red[800],

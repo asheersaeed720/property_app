@@ -1,6 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:property_app/src/complaint/complaint_screen.dart';
+import 'package:property_app/src/event/event_screen.dart';
+import 'package:property_app/src/invoice/invoice_screen.dart';
 import 'package:property_app/src/property/property_screen.dart';
+import 'package:property_app/src/property/user_property_screen.dart';
+import 'package:property_app/utils/custom_app_bar.dart';
 import 'package:property_app/widgets/custom_button.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -12,13 +17,18 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Theme.of(context).backgroundColor,
-      body: ListView(
-        padding: const EdgeInsets.all(10.0),
-        children: [
-          _buildFindPropertyView(context),
-          const SizedBox(height: 12.0),
-          _buildGridView(context),
-        ],
+      appBar: customAppBar(context, 'Property App'),
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.all(10.0),
+          child: Column(
+            children: [
+              _buildFindPropertyView(context),
+              const SizedBox(height: 12.0),
+              _buildGridView(context),
+            ],
+          ),
+        ),
       ),
     );
   }
@@ -53,7 +63,7 @@ class HomeScreen extends StatelessWidget {
 
   Widget _buildGridView(BuildContext context) {
     return SizedBox(
-      height: MediaQuery.of(context).size.height * 0.6,
+      height: MediaQuery.of(context).size.height / 1.3,
       child: GridView.count(
         crossAxisCount: 2,
         crossAxisSpacing: 4.0,
@@ -61,13 +71,135 @@ class HomeScreen extends StatelessWidget {
         children: [
           Card(
             elevation: 3.0,
+            child: InkWell(
+              onTap: () => Get.toNamed(UserPropertyScreen.routeName),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Image.asset('assets/icons/property.png', width: 70.0),
+                  const SizedBox(height: 12.0),
+                  Text(
+                    'My Properties',
+                    style: Theme.of(context).textTheme.headline2!.copyWith(fontSize: 16.0),
+                  ),
+                ],
+              ),
+            ),
+          ),
+          Card(
+            elevation: 3.0,
+            child: InkWell(
+              onTap: () => Get.toNamed(InvoiceScreen.routeName),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Image.asset('assets/icons/invoice.png', width: 70.0),
+                  const SizedBox(height: 12.0),
+                  Text(
+                    'My Invoices',
+                    style: Theme.of(context).textTheme.headline2!.copyWith(fontSize: 16.0),
+                  ),
+                ],
+              ),
+            ),
+          ),
+          // Card(
+          //   elevation: 3.0,
+          //   child: Column(
+          //     mainAxisAlignment: MainAxisAlignment.center,
+          //     crossAxisAlignment: CrossAxisAlignment.center,
+          //     children: [
+          //       Image.asset('assets/icons/investment.png', width: 70.0),
+          //       const SizedBox(height: 12.0),
+          //       Text(
+          //         'Future \nInvestment',
+          //         textAlign: TextAlign.center,
+          //         style: Theme.of(context).textTheme.headline2!.copyWith(fontSize: 16.0),
+          //       ),
+          //     ],
+          //   ),
+          // ),
+          InkWell(
+            onTap: () => Get.toNamed(EventScreen.routeName),
+            child: Card(
+              elevation: 3.0,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Image.asset('assets/icons/event.png', width: 70.0),
+                  const SizedBox(height: 12.0),
+                  Text(
+                    'Property Event',
+                    style: Theme.of(context).textTheme.headline2!.copyWith(fontSize: 16.0),
+                  ),
+                ],
+              ),
+            ),
+          ),
+          Card(
+            elevation: 3.0,
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                Image.asset('assets/images/property.png', width: 80.0),
+                Image.asset('assets/icons/blueprint.png', width: 70.0),
                 const SizedBox(height: 12.0),
-                Text('Properties', style: Theme.of(context).textTheme.headline2),
+                Text(
+                  'Upcoming \nProjects',
+                  textAlign: TextAlign.center,
+                  style: Theme.of(context).textTheme.headline2!.copyWith(fontSize: 16.0),
+                ),
+              ],
+            ),
+          ),
+          InkWell(
+            onTap: () => Get.toNamed(ComplaintScreen.routeName),
+            child: Card(
+              elevation: 3.0,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Image.asset('assets/icons/complain.png', width: 70.0),
+                  const SizedBox(height: 12.0),
+                  Text(
+                    'Complaints',
+                    style: Theme.of(context).textTheme.headline2!.copyWith(fontSize: 16.0),
+                  ),
+                ],
+              ),
+            ),
+          ),
+          // Card(
+          //   elevation: 3.0,
+          //   child: Column(
+          //     mainAxisAlignment: MainAxisAlignment.center,
+          //     crossAxisAlignment: CrossAxisAlignment.center,
+          //     children: [
+          //       Image.asset('assets/icons/application.png', width: 70.0),
+          //       const SizedBox(height: 12.0),
+          //       Text(
+          //         'Applications',
+          //         style: Theme.of(context).textTheme.headline2!.copyWith(fontSize: 16.0),
+          //       ),
+          //     ],
+          //   ),
+          // ),
+          Card(
+            elevation: 3.0,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Image.asset('assets/icons/how.png', width: 70.0),
+                const SizedBox(height: 12.0),
+                Text(
+                  'How do it',
+                  style: Theme.of(context).textTheme.headline2!.copyWith(fontSize: 16.0),
+                ),
               ],
             ),
           ),
@@ -77,10 +209,12 @@ class HomeScreen extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                Image.asset('assets/images/investment.png', width: 80.0),
+                Image.asset('assets/icons/verified.png', width: 70.0),
                 const SizedBox(height: 12.0),
-                Text('Future Investment',
-                    style: Theme.of(context).textTheme.headline2!.copyWith(fontSize: 17.0)),
+                Text(
+                  'Verify Docs',
+                  style: Theme.of(context).textTheme.headline2!.copyWith(fontSize: 16.0),
+                ),
               ],
             ),
           ),
@@ -90,103 +224,30 @@ class HomeScreen extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                Image.asset('assets/images/event.png', width: 80.0),
+                Image.asset('assets/icons/map.png', width: 70.0),
                 const SizedBox(height: 12.0),
-                Text('Property Event', style: Theme.of(context).textTheme.headline2),
+                Text(
+                  'MLC on Map',
+                  style: Theme.of(context).textTheme.headline2!.copyWith(fontSize: 16.0),
+                ),
               ],
             ),
           ),
-          Card(
-            elevation: 3.0,
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Image.asset('assets/images/news.png', width: 80.0),
-                const SizedBox(height: 12.0),
-                Text('Upcoming Projects',
-                    style: Theme.of(context).textTheme.headline2!.copyWith(fontSize: 17.0)),
-              ],
-            ),
-          ),
-          Card(
-            elevation: 3.0,
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Image.asset('assets/icons/complain.png', width: 80.0),
-                const SizedBox(height: 12.0),
-                Text('Complaints',
-                    style: Theme.of(context).textTheme.headline2!.copyWith(fontSize: 17.0)),
-              ],
-            ),
-          ),
-          Card(
-            elevation: 3.0,
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Image.asset('assets/icons/application.png', width: 80.0),
-                const SizedBox(height: 12.0),
-                Text('Applications',
-                    style: Theme.of(context).textTheme.headline2!.copyWith(fontSize: 17.0)),
-              ],
-            ),
-          ),
-          Card(
-            elevation: 3.0,
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Image.asset('assets/icons/how.png', width: 80.0),
-                const SizedBox(height: 12.0),
-                Text('How do it',
-                    style: Theme.of(context).textTheme.headline2!.copyWith(fontSize: 17.0)),
-              ],
-            ),
-          ),
-          Card(
-            elevation: 3.0,
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Image.asset('assets/icons/verified.png', width: 80.0),
-                const SizedBox(height: 12.0),
-                Text('Verify Docs',
-                    style: Theme.of(context).textTheme.headline2!.copyWith(fontSize: 17.0)),
-              ],
-            ),
-          ),
-          Card(
-            elevation: 3.0,
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Image.asset('assets/icons/map.png', width: 80.0),
-                const SizedBox(height: 12.0),
-                Text('MLC on Map',
-                    style: Theme.of(context).textTheme.headline2!.copyWith(fontSize: 17.0)),
-              ],
-            ),
-          ),
-          Card(
-            elevation: 3.0,
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Image.asset('assets/icons/setting.png', width: 80.0),
-                const SizedBox(height: 12.0),
-                Text('Setting',
-                    style: Theme.of(context).textTheme.headline2!.copyWith(fontSize: 17.0)),
-              ],
-            ),
-          ),
+          // Card(
+          //   elevation: 3.0,
+          //   child: Column(
+          //     mainAxisAlignment: MainAxisAlignment.center,
+          //     crossAxisAlignment: CrossAxisAlignment.center,
+          //     children: [
+          //       Image.asset('assets/icons/setting.png', width: 70.0),
+          //       const SizedBox(height: 12.0),
+          //       Text(
+          //         'Setting',
+          //         style: Theme.of(context).textTheme.headline2!.copyWith(fontSize: 16.0),
+          //       ),
+          //     ],
+          //   ),
+          // ),
         ],
       ),
     );
