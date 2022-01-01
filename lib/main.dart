@@ -24,7 +24,8 @@ class MyApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         // darkTheme: ThemeData.dark(),
         theme: ThemeData(
-          primaryColor: AppTheme.primary,
+          // primaryColor: AppTheme.primary,
+          primarySwatch: customPrimaryColor,
           errorColor: Colors.red[800],
           backgroundColor: Colors.white,
           visualDensity: VisualDensity.adaptivePlatformDensity,
@@ -37,16 +38,17 @@ class MyApp extends StatelessWidget {
       );
 }
 
-// Map<int, Color> color = {
-//   50: const Color.fromRGBO(30, 61, 88, .1),
-//   100: const Color.fromRGBO(30, 61, 88, .2),
-//   200: const Color.fromRGBO(30, 61, 88, .3),
-//   300: const Color.fromRGBO(30, 61, 88, .4),
-//   400: const Color.fromRGBO(30, 61, 88, .5),
-//   500: const Color.fromRGBO(30, 61, 88, .6),
-//   600: const Color.fromRGBO(30, 61, 88, .7),
-//   700: const Color.fromRGBO(30, 61, 88, .8),
-//   800: const Color.fromRGBO(30, 61, 88, .9),
-// };
+Map<int, Color> color = const {
+  50: Color.fromRGBO(8, 45, 74, .1),
+  100: Color.fromRGBO(8, 45, 74, .2),
+  200: Color.fromRGBO(8, 45, 74, .3),
+  300: Color.fromRGBO(8, 45, 74, .4),
+  400: Color.fromRGBO(8, 45, 74, .5),
+  500: Color.fromRGBO(8, 45, 74, .6),
+  600: Color.fromRGBO(8, 45, 74, .7),
+  700: Color.fromRGBO(8, 45, 74, .8),
+  800: Color.fromRGBO(8, 45, 74, .9),
+};
 
-// MaterialColor customPrimaryColor = MaterialColor(0xFF1e3d58, color);
+MaterialColor customPrimaryColor = MaterialColor(0xFF082d4a, color);
+Color customAccentColor = const Color(0xFFF2EFF5);

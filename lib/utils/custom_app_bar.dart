@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:property_app/src/auth/views/login_screen.dart';
+import 'package:property_app/src/auth/views/login_signup_screen.dart';
+import 'package:property_app/src/profile/user_profile_screen.dart';
 import 'package:property_app/utils/app_theme.dart';
 import 'package:property_app/utils/custom_dialog.dart';
 
@@ -24,17 +25,16 @@ AppBar customAppBar(context, appBarTxt, {color = Colors.white}) {
         enabled: true,
         onSelected: (value) {
           if (value == '1') {
-            // Get.toNamed(CandidateProfileScreen.routeName);
+            Get.toNamed(UserProfileScreen.routeName);
           } else if (value == '2') {
-            // Get.toNamed(SettingScreen.routeName);
-
+            // Get.toNamed(ProfileScreen.routeName);
           } else if (value == '3') {
             showAlertDialog(
               context,
               'Logout',
               'Are you sure you want to logout!',
               () {
-                Get.offNamed(LogInScreen.routeName);
+                Get.offAndToNamed(LogInSignUpScreen.routeName);
               },
             );
           }

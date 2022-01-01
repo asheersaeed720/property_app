@@ -3,8 +3,10 @@ import 'package:get/get.dart';
 import 'package:property_app/src/complaint/complaint_screen.dart';
 import 'package:property_app/src/event/event_screen.dart';
 import 'package:property_app/src/invoice/invoice_screen.dart';
+import 'package:property_app/src/projects/upcoming_project_screen.dart';
 import 'package:property_app/src/property/property_screen.dart';
 import 'package:property_app/src/property/user_property_screen.dart';
+import 'package:property_app/src/verify_doc/verify_doc_screen.dart';
 import 'package:property_app/utils/custom_app_bar.dart';
 import 'package:property_app/widgets/custom_button.dart';
 
@@ -121,10 +123,10 @@ class HomeScreen extends StatelessWidget {
           //     ],
           //   ),
           // ),
-          InkWell(
-            onTap: () => Get.toNamed(EventScreen.routeName),
-            child: Card(
-              elevation: 3.0,
+          Card(
+            elevation: 3.0,
+            child: InkWell(
+              onTap: () => Get.toNamed(EventScreen.routeName),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
@@ -141,24 +143,27 @@ class HomeScreen extends StatelessWidget {
           ),
           Card(
             elevation: 3.0,
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Image.asset('assets/icons/blueprint.png', width: 70.0),
-                const SizedBox(height: 12.0),
-                Text(
-                  'Upcoming \nProjects',
-                  textAlign: TextAlign.center,
-                  style: Theme.of(context).textTheme.headline2!.copyWith(fontSize: 16.0),
-                ),
-              ],
+            child: InkWell(
+              onTap: () => Get.toNamed(UpcomingProjectScreen.routeName),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Image.asset('assets/icons/blueprint.png', width: 70.0),
+                  const SizedBox(height: 12.0),
+                  Text(
+                    'Upcoming \nProjects',
+                    textAlign: TextAlign.center,
+                    style: Theme.of(context).textTheme.headline2!.copyWith(fontSize: 16.0),
+                  ),
+                ],
+              ),
             ),
           ),
-          InkWell(
-            onTap: () => Get.toNamed(ComplaintScreen.routeName),
-            child: Card(
-              elevation: 3.0,
+          Card(
+            elevation: 3.0,
+            child: InkWell(
+              onTap: () => Get.toNamed(ComplaintScreen.routeName),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
@@ -205,17 +210,20 @@ class HomeScreen extends StatelessWidget {
           ),
           Card(
             elevation: 3.0,
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Image.asset('assets/icons/verified.png', width: 70.0),
-                const SizedBox(height: 12.0),
-                Text(
-                  'Verify Docs',
-                  style: Theme.of(context).textTheme.headline2!.copyWith(fontSize: 16.0),
-                ),
-              ],
+            child: InkWell(
+              onTap: () => Get.toNamed(VerifyDocScreen.routeName),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Image.asset('assets/icons/verified.png', width: 70.0),
+                  const SizedBox(height: 12.0),
+                  Text(
+                    'Verify Docs',
+                    style: Theme.of(context).textTheme.headline2!.copyWith(fontSize: 16.0),
+                  ),
+                ],
+              ),
             ),
           ),
           Card(

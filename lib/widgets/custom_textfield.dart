@@ -33,24 +33,54 @@ class CustomTextField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return TextField(
+    return TextFormField(
       onTap: onTap,
       onChanged: onChanged,
       controller: controller,
       keyboardType: keyboardType,
-      // ignore: deprecated_member_use
-      cursorColor: Theme.of(context).accentColor,
       readOnly: readOnly,
       obscureText: obscureText,
       autofocus: autoFocus,
       decoration: InputDecoration(
-        prefixIcon: leadingIcon,
-        suffixIcon: suffixIcon,
-        border: InputBorder.none,
+        contentPadding: const EdgeInsets.symmetric(vertical: 16, horizontal: 22),
+        border: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(10.0),
+          borderSide: const BorderSide(style: BorderStyle.none, width: 0),
+        ),
+        isDense: true,
         hintText: hintText,
-        hintStyle: const TextStyle(color: Colors.grey, fontSize: 15),
-        labelText: labelText,
-        errorText: validatedField ? null : errorText,
+        // fillColor: widget.fillColor != null
+        //     ? widget.fillColor
+        //     : Theme.of(context).primaryColor,
+        hintStyle:
+            Theme.of(context).textTheme.headline2!.copyWith(fontSize: 12, color: Colors.grey),
+        filled: true,
+        // prefixIcon: isShowPrefixIcon
+        //     ? Padding(
+        //         padding: const EdgeInsets.only(
+        //             left: Dimensions.PADDING_SIZE_LARGE, right: Dimensions.PADDING_SIZE_SMALL),
+        //         child: Image.asset(widget.prefixIconUrl!),
+        //       )
+        //     : const SizedBox.shrink(),
+        prefixIconConstraints: const BoxConstraints(minWidth: 23, maxHeight: 20),
+        // suffixIcon: widget.isShowSuffixIcon
+        //     ? widget.isPassword
+        //         ? IconButton(
+        //             icon: Icon(_obscureText ? Icons.visibility_off : Icons.visibility,
+        //                 color: Theme.of(context).hintColor.withOpacity(0.3)),
+        //             onPressed: _toggle)
+        //         : widget.isIcon
+        //             ? IconButton(
+        //                 onPressed: widget.onSuffixTap as void Function()?,
+        //                 icon: Image.asset(
+        //                   widget.suffixIconUrl!,
+        //                   width: 15,
+        //                   height: 15,
+        //                   color: Theme.of(context).textTheme.bodyText1!.color,
+        //                 ),
+        //               )
+        //             : null
+        //     : null,
       ),
     );
   }

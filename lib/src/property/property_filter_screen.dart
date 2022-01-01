@@ -83,7 +83,7 @@ class _PropertyFilterScreenState extends State<PropertyFilterScreen> {
             onPressed: null,
             child: Text(
               'Buy',
-              style: TextStyle(color: Colors.black54),
+              style: TextStyle(color: Colors.black54, fontWeight: FontWeight.bold),
             ),
           ),
         ),
@@ -94,7 +94,7 @@ class _PropertyFilterScreenState extends State<PropertyFilterScreen> {
             onPressed: null,
             child: Text(
               'Rent',
-              style: TextStyle(color: Colors.black54),
+              style: TextStyle(color: Colors.black54, fontWeight: FontWeight.bold),
             ),
           ),
         ),

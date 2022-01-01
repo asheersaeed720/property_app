@@ -1,17 +1,20 @@
 import 'package:get/get.dart';
 import 'package:property_app/src/auth/views/auth_screen.dart';
 import 'package:property_app/src/auth/views/forgot_password_screen.dart';
-import 'package:property_app/src/auth/views/login_screen.dart';
-import 'package:property_app/src/auth/views/sign_up_screen.dart';
+import 'package:property_app/src/auth/views/login_signup_screen.dart';
 import 'package:property_app/src/chat/chat_message_screen.dart';
 import 'package:property_app/src/complaint/complaint_screen.dart';
 import 'package:property_app/src/event/event_screen.dart';
 import 'package:property_app/src/home/home_screen.dart';
 import 'package:property_app/src/invoice/invoice_screen.dart';
+import 'package:property_app/src/onboarding_screen.dart';
+import 'package:property_app/src/profile/user_profile_screen.dart';
+import 'package:property_app/src/projects/upcoming_project_screen.dart';
 import 'package:property_app/src/property/property_detail_screen.dart';
 import 'package:property_app/src/property/property_filter_screen.dart';
 import 'package:property_app/src/property/property_screen.dart';
 import 'package:property_app/src/property/user_property_screen.dart';
+import 'package:property_app/src/verify_doc/verify_doc_screen.dart';
 
 final List<GetPage<dynamic>> customRoutes = [
   GetPage(
@@ -19,12 +22,12 @@ final List<GetPage<dynamic>> customRoutes = [
     page: () => const AuthScreen(),
   ),
   GetPage(
-    name: LogInScreen.routeName,
-    page: () => const LogInScreen(),
+    name: OnBoardingScreen.routeName,
+    page: () => const OnBoardingScreen(),
   ),
   GetPage(
-    name: SignUpScreen.routeName,
-    page: () => const SignUpScreen(),
+    name: LogInSignUpScreen.routeName,
+    page: () => const LogInSignUpScreen(),
   ),
   GetPage(
     name: ForgotPasswordScreen.routeName,
@@ -65,5 +68,17 @@ final List<GetPage<dynamic>> customRoutes = [
   GetPage(
     name: ComplaintScreen.routeName,
     page: () => const ComplaintScreen(),
+  ),
+  GetPage(
+    name: UpcomingProjectScreen.routeName,
+    page: () => const UpcomingProjectScreen(),
+  ),
+  GetPage(
+    name: UserProfileScreen.routeName,
+    page: () => UserProfileScreen(),
+  ),
+  GetPage(
+    name: VerifyDocScreen.routeName,
+    page: () => const VerifyDocScreen(),
   ),
 ];

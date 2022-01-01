@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:property_app/src/auth/views/login_screen.dart';
+import 'package:property_app/src/onboarding_screen.dart';
 
 class AuthScreen extends StatelessWidget {
   static const String routeName = '/auth';
@@ -8,6 +8,6 @@ class AuthScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const LogInScreen();
+    return const OnBoardingScreen();
   }
 }
