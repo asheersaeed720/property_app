@@ -1,50 +1,69 @@
 import 'package:flutter/material.dart';
 
+import 'app_theme.dart';
+
 InputDecoration buildTextFieldInputDecoration(
   context, {
   required String hintTxt,
-  Widget? preffixIcon,
-  Widget? suffixIcon,
+  IconData? preffixIcon,
 }) {
   return InputDecoration(
-    filled: true,
-    fillColor: Colors.white,
-    border: OutlineInputBorder(
-      borderRadius: BorderRadius.circular(6.0),
-      borderSide: BorderSide.none,
+    prefixIcon: Icon(
+      preffixIcon,
+      color: AppTheme.iconColor,
     ),
-    enabledBorder: OutlineInputBorder(
-      borderRadius: BorderRadius.circular(6.0),
-      borderSide: BorderSide.none,
+    border: const OutlineInputBorder(
+      borderSide: BorderSide(color: AppTheme.textColor1),
+      borderRadius: BorderRadius.all(Radius.circular(35.0)),
     ),
+    enabledBorder: const OutlineInputBorder(
+      borderSide: BorderSide(color: AppTheme.textColor1),
+      borderRadius: BorderRadius.all(Radius.circular(35.0)),
+    ),
+    focusedBorder: const OutlineInputBorder(
+      borderSide: BorderSide(color: AppTheme.textColor1),
+      borderRadius: BorderRadius.all(Radius.circular(35.0)),
+    ),
+    errorBorder: const OutlineInputBorder(
+      borderSide: BorderSide(color: AppTheme.textColor1),
+      borderRadius: BorderRadius.all(Radius.circular(35.0)),
+    ),
+    contentPadding: const EdgeInsets.all(10),
     hintText: hintTxt,
-    isDense: true,
-    // ignore: unnecessary_null_in_if_null_operators
-    prefixIcon: preffixIcon ?? null,
-    // ignore: unnecessary_null_in_if_null_operators
-    suffixIcon: suffixIcon ?? null,
+    hintStyle: const TextStyle(fontSize: 14, color: AppTheme.textColor1),
   );
 }
 
 InputDecoration buildPasswordInputDecoration(
   context, {
   required String hintTxt,
+  required IconData preffixIcon,
   required Widget suffixIcon,
 }) {
   return InputDecoration(
-    filled: true,
-    fillColor: Colors.white,
-    border: OutlineInputBorder(
-      borderRadius: BorderRadius.circular(6.0),
-      borderSide: BorderSide.none,
+    prefixIcon: Icon(
+      preffixIcon,
+      color: AppTheme.iconColor,
     ),
-    enabledBorder: OutlineInputBorder(
-      borderRadius: BorderRadius.circular(6.0),
-      borderSide: BorderSide.none,
-    ),
-    hintText: hintTxt,
-    isDense: true,
-    prefixIcon: const Icon(Icons.lock),
     suffixIcon: suffixIcon,
+    border: const OutlineInputBorder(
+      borderSide: BorderSide(color: AppTheme.textColor1),
+      borderRadius: BorderRadius.all(Radius.circular(35.0)),
+    ),
+    enabledBorder: const OutlineInputBorder(
+      borderSide: BorderSide(color: AppTheme.textColor1),
+      borderRadius: BorderRadius.all(Radius.circular(35.0)),
+    ),
+    focusedBorder: const OutlineInputBorder(
+      borderSide: BorderSide(color: AppTheme.textColor1),
+      borderRadius: BorderRadius.all(Radius.circular(35.0)),
+    ),
+    errorBorder: const OutlineInputBorder(
+      borderSide: BorderSide(color: AppTheme.textColor1),
+      borderRadius: BorderRadius.all(Radius.circular(35.0)),
+    ),
+    contentPadding: const EdgeInsets.all(10),
+    hintText: hintTxt,
+    hintStyle: const TextStyle(fontSize: 14, color: AppTheme.textColor1),
   );
 }

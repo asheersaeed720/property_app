@@ -54,11 +54,11 @@ class ForgotPasswordScreen extends StatelessWidget {
                     const Text('This action will send password at your email.'),
                     const SizedBox(height: 18.0),
                     // _buildEmailTextField(context),
-                    CustomTextField(
+                    const CustomTextField(
                       // controller: emailController,
                       autoFocus: true,
                       keyboardType: TextInputType.emailAddress,
-                      leadingIcon: const Icon(
+                      leadingIcon: Icon(
                         Icons.email_outlined,
                         color: Colors.grey,
                       ),
@@ -123,7 +123,7 @@ class ForgotPasswordScreen extends StatelessWidget {
         decoration: buildTextFieldInputDecoration(
           context,
           hintTxt: 'Email',
-          preffixIcon: const Icon(Icons.email),
+          preffixIcon: Icons.email,
         ),
       ),
     );

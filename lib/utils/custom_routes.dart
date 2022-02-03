@@ -7,7 +7,6 @@ import 'package:property_app/src/complaint/complaint_screen.dart';
 import 'package:property_app/src/event/event_screen.dart';
 import 'package:property_app/src/home/home_screen.dart';
 import 'package:property_app/src/invoice/invoice_screen.dart';
-import 'package:property_app/src/onboarding_screen.dart';
 import 'package:property_app/src/profile/user_profile_screen.dart';
 import 'package:property_app/src/projects/upcoming_project_screen.dart';
 import 'package:property_app/src/property/property_detail_screen.dart';
@@ -20,10 +19,6 @@ final List<GetPage<dynamic>> customRoutes = [
   GetPage(
     name: AuthScreen.routeName,
     page: () => const AuthScreen(),
-  ),
-  GetPage(
-    name: OnBoardingScreen.routeName,
-    page: () => const OnBoardingScreen(),
   ),
   GetPage(
     name: LogInSignUpScreen.routeName,
@@ -75,7 +70,7 @@ final List<GetPage<dynamic>> customRoutes = [
   ),
   GetPage(
     name: UserProfileScreen.routeName,
-    page: () => UserProfileScreen(),
+    page: () => const UserProfileScreen(),
   ),
   GetPage(
     name: VerifyDocScreen.routeName,

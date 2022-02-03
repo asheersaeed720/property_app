@@ -39,7 +39,6 @@ dependencies:
   connectivity: ^3.0.6
   carousel_slider: ^4.0.0
   dropdown_search: ^2.0.1
-  introduction_screen: ^2.1.0
   cached_network_image: ^3.2.0
   font_awesome_flutter: ^9.2.0
   async_button_builder: ^2.1.4
