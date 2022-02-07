@@ -4,6 +4,7 @@ import 'package:property_app/src/auth/auth_controller.dart';
 import 'package:property_app/src/auth/views/forgot_password_screen.dart';
 import 'package:property_app/utils/app_theme.dart';
 import 'package:property_app/utils/input_decoration.dart';
+import 'package:property_app/widgets/loading_widget.dart';
 
 class LogInSignUpScreen extends StatefulWidget {
   static const String routeName = '/login-signup';
@@ -17,8 +18,8 @@ class LogInSignUpScreen extends StatefulWidget {
 class _LogInSignUpScreenState extends State<LogInSignUpScreen> {
   final AuthController _authController = Get.find<AuthController>();
 
-  GlobalKey<FormState> _formKeyLogin = GlobalKey<FormState>();
-  GlobalKey<FormState> _signUpKeyLogin = GlobalKey<FormState>();
+  final GlobalKey<FormState> _formKeyLogin = GlobalKey<FormState>();
+  final GlobalKey<FormState> _signUpKeyLogin = GlobalKey<FormState>();
 
   bool isSignupScreen = true;
   bool isMale = true;
@@ -183,8 +184,7 @@ class _LogInSignUpScreenState extends State<LogInSignUpScreen> {
         key: _formKeyLogin,
         child: Column(
           children: [
-            // _buildEmailTextField(),
-            _buildUserNameTextField(),
+            _buildEmailTextField(),
             const SizedBox(height: 12.0),
             _buildPasswordTextField(),
             Row(
@@ -227,9 +227,11 @@ class _LogInSignUpScreenState extends State<LogInSignUpScreen> {
         key: _signUpKeyLogin,
         child: Column(
           children: [
-            // buildTextField(Icons.person, "Username", false, false),
-            // buildTextField(Icons.email, "Email", false, true),
-            // buildTextField(Icons.lock_outline, "Password", true, false),
+            _buildNameTextField(),
+            const SizedBox(height: 12.0),
+            _buildEmailTextField(),
+            const SizedBox(height: 12.0),
+            _buildPasswordTextField(),
             Container(
               width: 200,
               margin: const EdgeInsets.only(top: 20),
@@ -277,46 +279,63 @@ class _LogInSignUpScreenState extends State<LogInSignUpScreen> {
                   )
               ]),
           child: !showShadow
-              ? Container(
-                  decoration: BoxDecoration(
-                      gradient: LinearGradient(colors: [
-                        Colors.orange.shade300,
-                        Colors.red.shade400,
-                      ], begin: Alignment.topLeft, end: Alignment.bottomRight),
-                      borderRadius: BorderRadius.circular(30),
-                      boxShadow: [
-                        BoxShadow(
-                            color: Colors.black.withOpacity(.3),
-                            spreadRadius: 1,
-                            blurRadius: 2,
-                            offset: const Offset(0, 1))
-                      ]),
-                  child: InkWell(
-                    onTap: () {
-                      if (isSignupScreen) {
-                        if (_signUpKeyLogin.currentState!.validate()) {
-                          _signUpKeyLogin.currentState!.save();
-                          FocusScopeNode currentFocus = FocusScope.of(context);
-                          if (!currentFocus.hasPrimaryFocus) {
-                            currentFocus.unfocus();
-                          }
-                        }
-                      } else {
-                        if (_formKeyLogin.currentState!.validate()) {
-                          _formKeyLogin.currentState!.save();
-                          FocusScopeNode currentFocus = FocusScope.of(context);
-                          if (!currentFocus.hasPrimaryFocus) {
-                            currentFocus.unfocus();
-                          }
-                          _authController.handleLogIn();
-                        }
-                      }
-                    },
-                    child: const Icon(
-                      Icons.arrow_forward,
-                      color: Colors.white,
-                    ),
-                  ),
+              ? GetBuilder<AuthController>(
+                  builder: (_) => _authController.isLoading
+                      ? const LoadingWidget()
+                      : Container(
+                          decoration: BoxDecoration(
+                              gradient: LinearGradient(colors: [
+                                Colors.orange.shade300,
+                                Colors.red.shade400,
+                              ], begin: Alignment.topLeft, end: Alignment.bottomRight),
+                              borderRadius: BorderRadius.circular(30),
+                              boxShadow: [
+                                BoxShadow(
+                                    color: Colors.black.withOpacity(.3),
+                                    spreadRadius: 1,
+                                    blurRadius: 2,
+                                    offset: const Offset(0, 1))
+                              ]),
+                          child: InkWell(
+                            onTap: () async {
+                              if (isSignupScreen) {
+                                if (_signUpKeyLogin.currentState!.validate()) {
+                                  _signUpKeyLogin.currentState!.save();
+                                  FocusScopeNode currentFocus = FocusScope.of(context);
+                                  if (!currentFocus.hasPrimaryFocus) {
+                                    currentFocus.unfocus();
+                                  }
+                                  _authController.isLoading = true;
+                                  await _authController.handleSignUp().catchError((_) {
+                                    _authController.isLoading = false;
+                                    _authController.update();
+                                  });
+                                  _authController.isLoading = false;
+                                  _authController.update();
+                                }
+                              } else {
+                                if (_formKeyLogin.currentState!.validate()) {
+                                  _formKeyLogin.currentState!.save();
+                                  FocusScopeNode currentFocus = FocusScope.of(context);
+                                  if (!currentFocus.hasPrimaryFocus) {
+                                    currentFocus.unfocus();
+                                  }
+                                  _authController.isLoading = true;
+                                  await _authController.handleLogIn().catchError((_) {
+                                    _authController.isLoading = false;
+                                    _authController.update();
+                                  });
+                                  _authController.isLoading = false;
+                                  _authController.update();
+                                }
+                              }
+                            },
+                            child: const Icon(
+                              Icons.arrow_forward,
+                              color: Colors.white,
+                            ),
+                          ),
+                        ),
                 )
               : const Center(),
         ),
@@ -324,12 +343,11 @@ class _LogInSignUpScreenState extends State<LogInSignUpScreen> {
     );
   }
 
-  Widget _buildUserNameTextField() {
+  Widget _buildNameTextField() {
     return TextFormField(
       autofocus: true,
       onChanged: (value) {
-        _authController.userFormModel.username =
-            value.replaceAll(RegExp(r"\s+\b|\b\s"), " ").trim();
+        _authController.userFormModel.name = value.replaceAll(RegExp(r"\s+\b|\b\s"), " ").trim();
       },
       validator: (value) {
         if (value!.isEmpty) {
@@ -338,7 +356,7 @@ class _LogInSignUpScreenState extends State<LogInSignUpScreen> {
       },
       keyboardType: TextInputType.text,
       decoration: buildTextFieldInputDecoration(context,
-          preffixIcon: Icons.person_outline_outlined, hintTxt: 'Username'),
+          preffixIcon: Icons.person_outline_outlined, hintTxt: 'Name'),
     );
   }
 

@@ -18,6 +18,8 @@ class AuthController extends NetworkManager {
 
   Map currentUserData = {};
 
+  bool isLoading = false;
+
   bool _obscureText = true;
   bool get obscureText => _obscureText;
   set obscureText(bool newObscureVal) {
@@ -36,9 +38,16 @@ class AuthController extends NetworkManager {
       try {
         var response = await _authService.logInUser(userFormModel);
         if (response.statusCode == 200) {
+          _getStorage.write(
+            'user',
+            {
+              'key': "${response.body['key']}",
+              ...response.body['user'],
+            },
+          );
           currentUserData = getCurrentUser();
           update();
-          Get.offNamed(AuthScreen.routeName);
+          Get.offAllNamed(AuthScreen.routeName);
         } else if (response.statusCode == 404) {
           displayToastMessage('Invalid Credentials');
         } else {
@@ -54,13 +63,44 @@ class AuthController extends NetworkManager {
     }
   }
 
+  Future<void> handleSignUp() async {
+    if (connectionType != 0) {
+      try {
+        var response = await _authService.signUpUser(userFormModel);
+        if (response.statusCode == 200) {
+          _getStorage.write(
+            'user',
+            {
+              'key': "${response.body['key']}",
+              ...response.body['user'],
+            },
+          );
+          currentUserData = getCurrentUser();
+          update();
+          Get.offAllNamed(AuthScreen.routeName);
+        } else if (response.statusCode == 404) {
+          displayToastMessage('Invalid Credentials');
+        } else {
+          displayToastMessage('Something went wrong');
+        }
+        log('signUpRes ${response.body}, type:${response.body.runtimeType}');
+      } catch (e) {
+        displayToastMessage(e);
+        rethrow;
+      }
+    } else {
+      customSnackBar('Network error', 'Please try again later');
+    }
+  }
+
   Map getCurrentUser() {
     Map userData = _getStorage.read('user') ?? {};
     if (userData.isNotEmpty) {
       Map user = userData;
       log('$userData', name: 'storeUser');
       return user;
+    } else {
+      return {};
     }
-    return {};
   }
 }

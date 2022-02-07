@@ -3,16 +3,17 @@ import 'package:property_app/src/auth/views/auth_screen.dart';
 import 'package:property_app/src/auth/views/forgot_password_screen.dart';
 import 'package:property_app/src/auth/views/login_signup_screen.dart';
 import 'package:property_app/src/chat/chat_message_screen.dart';
-import 'package:property_app/src/complaint/complaint_screen.dart';
+import 'package:property_app/src/complaint/views/complaint_screen.dart';
 import 'package:property_app/src/event/event_screen.dart';
 import 'package:property_app/src/home/home_screen.dart';
 import 'package:property_app/src/invoice/invoice_screen.dart';
+import 'package:property_app/src/map/google_map_screen.dart';
 import 'package:property_app/src/profile/user_profile_screen.dart';
 import 'package:property_app/src/projects/upcoming_project_screen.dart';
-import 'package:property_app/src/property/property_detail_screen.dart';
-import 'package:property_app/src/property/property_filter_screen.dart';
-import 'package:property_app/src/property/property_screen.dart';
-import 'package:property_app/src/property/user_property_screen.dart';
+import 'package:property_app/src/property/views/property_detail_screen.dart';
+import 'package:property_app/src/property/views/property_filter_screen.dart';
+import 'package:property_app/src/property/views/property_screen.dart';
+import 'package:property_app/src/property/views/user_property_screen.dart';
 import 'package:property_app/src/verify_doc/verify_doc_screen.dart';
 
 final List<GetPage<dynamic>> customRoutes = [
@@ -33,8 +34,8 @@ final List<GetPage<dynamic>> customRoutes = [
     page: () => const HomeScreen(),
   ),
   GetPage(
-    name: PropertyScreen.routeName,
-    page: () => const PropertyScreen(),
+    name: AllPropertyScreen.routeName,
+    page: () => const AllPropertyScreen(),
   ),
   GetPage(
     name: PropertyFilterScreen.routeName,
@@ -75,5 +76,9 @@ final List<GetPage<dynamic>> customRoutes = [
   GetPage(
     name: VerifyDocScreen.routeName,
     page: () => const VerifyDocScreen(),
+  ),
+  GetPage(
+    name: GoogleMapScreen.routeName,
+    page: () => const GoogleMapScreen(),
   ),
 ];

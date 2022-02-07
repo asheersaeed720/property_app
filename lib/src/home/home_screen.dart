@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:property_app/src/complaint/complaint_screen.dart';
+import 'package:property_app/src/complaint/views/complaint_screen.dart';
 import 'package:property_app/src/event/event_screen.dart';
 import 'package:property_app/src/invoice/invoice_screen.dart';
-import 'package:property_app/src/projects/upcoming_project_screen.dart';
-import 'package:property_app/src/property/property_screen.dart';
-import 'package:property_app/src/property/user_property_screen.dart';
+import 'package:property_app/src/map/google_map_screen.dart';
+import 'package:property_app/src/property/views/property_screen.dart';
 import 'package:property_app/src/verify_doc/verify_doc_screen.dart';
 import 'package:property_app/utils/custom_app_bar.dart';
 import 'package:property_app/widgets/custom_button.dart';
@@ -49,12 +48,12 @@ class HomeScreen extends StatelessWidget {
               CustomButton(
                 height: 36.0,
                 btnTxt: 'Buy',
-                onPressed: () => Get.toNamed(PropertyScreen.routeName),
+                onPressed: () => Get.toNamed(AllPropertyScreen.routeName),
               ),
               CustomButton(
                 height: 36.0,
                 btnTxt: 'Rent',
-                onPressed: () => Get.toNamed(PropertyScreen.routeName),
+                onPressed: () => Get.toNamed(AllPropertyScreen.routeName),
               ),
             ],
           ),
@@ -74,7 +73,7 @@ class HomeScreen extends StatelessWidget {
           Card(
             elevation: 3.0,
             child: InkWell(
-              onTap: () => Get.toNamed(UserPropertyScreen.routeName),
+              onTap: () => Get.toNamed(AllPropertyScreen.routeName),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
@@ -144,7 +143,8 @@ class HomeScreen extends StatelessWidget {
           Card(
             elevation: 3.0,
             child: InkWell(
-              onTap: () => Get.toNamed(UpcomingProjectScreen.routeName),
+              onTap: () => Get.toNamed(AllPropertyScreen.routeName),
+              // onTap: () => Get.toNamed(UpcomingProjectScreen.routeName),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
@@ -228,34 +228,23 @@ class HomeScreen extends StatelessWidget {
           ),
           Card(
             elevation: 3.0,
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Image.asset('assets/icons/map.png', width: 70.0),
-                const SizedBox(height: 12.0),
-                Text(
-                  'MLC on Map',
-                  style: Theme.of(context).textTheme.headline2!.copyWith(fontSize: 16.0),
-                ),
-              ],
+            child: InkWell(
+              onTap: () => Get.toNamed(GoogleMapScreen.routeName),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Image.asset('assets/icons/map.png', width: 70.0),
+                  const SizedBox(height: 12.0),
+                  Text(
+                    'MLC on Map',
+                    style: Theme.of(context).textTheme.headline2!.copyWith(fontSize: 16.0),
+                  ),
+                ],
+              ),
             ),
           ),
-          // Card(
-          //   elevation: 3.0,
-          //   child: Column(
-          //     mainAxisAlignment: MainAxisAlignment.center,
-          //     crossAxisAlignment: CrossAxisAlignment.center,
-          //     children: [
-          //       Image.asset('assets/icons/setting.png', width: 70.0),
-          //       const SizedBox(height: 12.0),
-          //       Text(
-          //         'Setting',
-          //         style: Theme.of(context).textTheme.headline2!.copyWith(fontSize: 16.0),
-          //       ),
-          //     ],
-          //   ),
-          // ),
+          const SizedBox(height: 2.0)
         ],
       ),
     );

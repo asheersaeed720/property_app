@@ -3,8 +3,13 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:property_app/src/chat/chat_message_screen.dart';
+import 'package:property_app/src/property/property_model.dart';
 import 'package:property_app/utils/app_theme.dart';
+import 'package:property_app/utils/constants.dart';
+import 'package:property_app/widgets/cache_img_widget.dart';
 import 'package:property_app/widgets/custom_button.dart';
+import 'package:property_app/widgets/google_map_widget.dart';
+import 'package:timeago/timeago.dart' as timeago;
 
 class PropertyDetailScreen extends StatefulWidget {
   static const String routeName = '/property-detail';
@@ -16,6 +21,8 @@ class PropertyDetailScreen extends StatefulWidget {
 }
 
 class _PropertyDetailScreenState extends State<PropertyDetailScreen> {
+  final args = Get.arguments as Map<String, dynamic>;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -74,6 +81,7 @@ class _PropertyDetailScreenState extends State<PropertyDetailScreen> {
   }
 
   Widget buildSliderView() {
+    List<PropertyImage> _sliderImgList = (args['images'] as List<PropertyImage>);
     return CarouselSlider(
       options: CarouselOptions(
         autoPlay: true,
@@ -82,33 +90,32 @@ class _PropertyDetailScreenState extends State<PropertyDetailScreen> {
         aspectRatio: 16 / 10,
         enableInfiniteScroll: false,
       ),
-      items: [
-        SizedBox(
-          width: MediaQuery.of(context).size.width,
-          child: Image.asset(
-            'assets/images/no_img_available.jpg',
-            fit: BoxFit.cover,
-          ),
-        ),
-        SizedBox(
-          width: MediaQuery.of(context).size.width,
-          child: Image.asset(
-            'assets/images/no_img_available.jpg',
-            fit: BoxFit.cover,
-          ),
-        ),
-        SizedBox(
-          width: MediaQuery.of(context).size.width,
-          child: Image.asset(
-            'assets/images/no_img_available.jpg',
-            fit: BoxFit.cover,
-          ),
-        ),
-      ],
+      items: _sliderImgList.isEmpty
+          ? [
+              SizedBox(
+                width: MediaQuery.of(context).size.width,
+                child: const CacheImgWidget(
+                  "assets/images/no_img_available.jpg",
+                ),
+              ),
+            ]
+          : _sliderImgList
+              .map(
+                (e) => SizedBox(
+                  width: MediaQuery.of(context).size.width,
+                  child: CacheImgWidget(
+                    "$imgURL/${e.image}",
+                  ),
+                ),
+              )
+              .toList(),
     );
   }
 
   Widget _buildFurtherDetailsView() {
+    String price = args['price'];
+    String postedDate = timeago.format(args['createdAt']);
+    String description = args['description'];
     return Padding(
       padding: const EdgeInsets.all(10.0),
       child: Column(
@@ -118,7 +125,7 @@ class _PropertyDetailScreenState extends State<PropertyDetailScreen> {
             children: [
               const Text('PKR ', style: TextStyle(fontSize: 13.0)),
               Text(
-                '65 Lac',
+                price,
                 style: Theme.of(context).textTheme.headline2,
               ),
             ],
@@ -135,20 +142,26 @@ class _PropertyDetailScreenState extends State<PropertyDetailScreen> {
             'About Property',
             style: Theme.of(context).textTheme.headline1,
           ),
-          const Text(
-            'Posted: Dec 24, 2021',
-            style: TextStyle(color: Colors.grey, fontWeight: FontWeight.bold),
+          Text(
+            'Posted: $postedDate',
+            style: const TextStyle(color: Colors.grey, fontWeight: FontWeight.bold),
           ),
           const SizedBox(height: 12.0),
-          const Text(
-            "Lorem ipsum  is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.",
-          ),
+          Text(description),
         ],
       ),
     );
   }
 
   Widget _buildLocationOnMap() {
-    return Image.asset('assets/images/map.png');
+    String lat = args['lat'];
+    String long = args['long'];
+    return SizedBox(
+      height: MediaQuery.of(context).size.height * 0.4,
+      child: GoogleMapWidget(
+        latitude: double.parse(lat),
+        longitude: double.parse(long),
+      ),
+    );
   }
 }

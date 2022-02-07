@@ -1,14 +1,14 @@
 class UserModel {
-  String username;
+  String name;
   String email;
   String password;
 
   UserModel({
-    this.username = '',
+    this.name = '',
     this.email = '',
     this.password = '',
   });
 
   @override
-  String toString() => 'UserModel(username: $username, email: $email, password: $password)';
+  String toString() => 'UserModel(name: $name, email: $email, password: $password)';
 }
