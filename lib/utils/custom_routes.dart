@@ -9,11 +9,12 @@ import 'package:property_app/src/home/home_screen.dart';
 import 'package:property_app/src/invoice/invoice_screen.dart';
 import 'package:property_app/src/map/google_map_screen.dart';
 import 'package:property_app/src/profile/user_profile_screen.dart';
-import 'package:property_app/src/projects/upcoming_project_screen.dart';
 import 'package:property_app/src/property/views/property_detail_screen.dart';
 import 'package:property_app/src/property/views/property_filter_screen.dart';
 import 'package:property_app/src/property/views/property_screen.dart';
 import 'package:property_app/src/property/views/user_property_screen.dart';
+import 'package:property_app/src/upcoming_projects/views/upcoming_project_detail_screen.dart';
+import 'package:property_app/src/upcoming_projects/views/upcoming_project_screen.dart';
 import 'package:property_app/src/verify_doc/verify_doc_screen.dart';
 
 final List<GetPage<dynamic>> customRoutes = [
@@ -68,6 +69,10 @@ final List<GetPage<dynamic>> customRoutes = [
   GetPage(
     name: UpcomingProjectScreen.routeName,
     page: () => const UpcomingProjectScreen(),
+  ),
+  GetPage(
+    name: UpcomingProjectDetailScreen.routeName,
+    page: () => const UpcomingProjectDetailScreen(),
   ),
   GetPage(
     name: UserProfileScreen.routeName,

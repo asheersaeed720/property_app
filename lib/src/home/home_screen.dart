@@ -5,6 +5,7 @@ import 'package:property_app/src/event/event_screen.dart';
 import 'package:property_app/src/invoice/invoice_screen.dart';
 import 'package:property_app/src/map/google_map_screen.dart';
 import 'package:property_app/src/property/views/property_screen.dart';
+import 'package:property_app/src/upcoming_projects/views/upcoming_project_screen.dart';
 import 'package:property_app/src/verify_doc/verify_doc_screen.dart';
 import 'package:property_app/utils/custom_app_bar.dart';
 import 'package:property_app/widgets/custom_button.dart';
@@ -18,7 +19,7 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Theme.of(context).backgroundColor,
-      appBar: customAppBar(context, 'Property App'),
+      appBar: customAppBar(context, 'Softo Property'),
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.all(10.0),
@@ -143,8 +144,7 @@ class HomeScreen extends StatelessWidget {
           Card(
             elevation: 3.0,
             child: InkWell(
-              onTap: () => Get.toNamed(AllPropertyScreen.routeName),
-              // onTap: () => Get.toNamed(UpcomingProjectScreen.routeName),
+              onTap: () => Get.toNamed(UpcomingProjectScreen.routeName),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,

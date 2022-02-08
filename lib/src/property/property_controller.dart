@@ -10,7 +10,6 @@ class PropertyController extends GetxController {
   Future<List<PropertyModel>> getAllProperties() async {
     try {
       var response = await _propertyService.getAllProperties();
-      // log(response.body);
       if (response.statusCode == 200) {
         var responseJson = response.body;
         return (responseJson as List).map((i) => PropertyModel.fromJson(i)).toList();

@@ -1,26 +1,24 @@
-import 'package:carousel_slider/carousel_options.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:property_app/src/chat/chat_message_screen.dart';
-import 'package:property_app/src/property/property_model.dart';
+import 'package:property_app/src/upcoming_projects/upcoming_project.dart';
 import 'package:property_app/utils/app_theme.dart';
 import 'package:property_app/utils/constants.dart';
 import 'package:property_app/widgets/cache_img_widget.dart';
 import 'package:property_app/widgets/custom_button.dart';
-import 'package:property_app/widgets/google_map_widget.dart';
 import 'package:timeago/timeago.dart' as timeago;
 
-class PropertyDetailScreen extends StatefulWidget {
-  static const String routeName = '/property-detail';
+class UpcomingProjectDetailScreen extends StatefulWidget {
+  static const String routeName = '/upcoming-project-detail';
 
-  const PropertyDetailScreen({Key? key}) : super(key: key);
+  const UpcomingProjectDetailScreen({Key? key}) : super(key: key);
 
   @override
-  _PropertyDetailScreenState createState() => _PropertyDetailScreenState();
+  _UpcomingProjectDetailScreenState createState() => _UpcomingProjectDetailScreenState();
 }
 
-class _PropertyDetailScreenState extends State<PropertyDetailScreen> {
+class _UpcomingProjectDetailScreenState extends State<UpcomingProjectDetailScreen> {
   final args = Get.arguments as Map<String, dynamic>;
 
   @override
@@ -51,10 +49,6 @@ class _PropertyDetailScreenState extends State<PropertyDetailScreen> {
           const SizedBox(height: 12.0),
           _buildFurtherDetailsView(),
           const SizedBox(height: 12.0),
-          Image.asset('assets/images/divider.jpg'),
-          const SizedBox(height: 22.0),
-          _buildLocationOnMap(),
-          const SizedBox(height: 18.0),
         ],
       ),
       bottomNavigationBar: Padding(
@@ -81,7 +75,7 @@ class _PropertyDetailScreenState extends State<PropertyDetailScreen> {
   }
 
   Widget buildSliderView() {
-    List<PropertyImage> _sliderImgList = (args['images'] as List<PropertyImage>);
+    List<UpcomingProjectImage> _sliderImgList = (args['images'] as List<UpcomingProjectImage>);
     return CarouselSlider(
       options: CarouselOptions(
         autoPlay: true,
@@ -115,7 +109,6 @@ class _PropertyDetailScreenState extends State<PropertyDetailScreen> {
   }
 
   Widget _buildFurtherDetailsView() {
-    String price = args['price'];
     String postedDate = timeago.format(args['createdAt']);
     String description = args['description'];
     return Padding(
@@ -123,16 +116,6 @@ class _PropertyDetailScreenState extends State<PropertyDetailScreen> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Wrap(
-            children: [
-              const Text('PKR ', style: TextStyle(fontSize: 13.0)),
-              Text(
-                price,
-                style: Theme.of(context).textTheme.headline2,
-              ),
-            ],
-          ),
-          const SizedBox(height: 12.0),
           Text(
             '125 Sqyd Residential Plot for Sale',
             style: Theme.of(context).textTheme.headline2,
@@ -151,18 +134,6 @@ class _PropertyDetailScreenState extends State<PropertyDetailScreen> {
           const SizedBox(height: 12.0),
           Text(description),
         ],
-      ),
-    );
-  }
-
-  Widget _buildLocationOnMap() {
-    String lat = args['lat'];
-    String long = args['long'];
-    return SizedBox(
-      height: MediaQuery.of(context).size.height * 0.4,
-      child: GoogleMapWidget(
-        latitude: double.parse(lat),
-        longitude: double.parse(long),
       ),
     );
   }

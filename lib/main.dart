@@ -20,7 +20,7 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => GetMaterialApp(
-        title: 'Property App',
+        title: 'Softo Property',
         debugShowCheckedModeBanner: false,
         // darkTheme: ThemeData.dark(),
         theme: ThemeData(
