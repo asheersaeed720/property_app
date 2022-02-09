@@ -27,9 +27,14 @@ class AuthController extends NetworkManager {
     update();
   }
 
+  String rememberEmail = '';
+
+  bool isRememberMe = false;
+
   @override
   void onInit() {
     currentUserData = getCurrentUser();
+    rememberEmail = _getStorage.read('email') ?? '';
     super.onInit();
   }
 
@@ -46,6 +51,10 @@ class AuthController extends NetworkManager {
             },
           );
           currentUserData = getCurrentUser();
+          if (isRememberMe) {
+            _getStorage.write('email', userFormModel.email);
+            rememberEmail = _getStorage.read('email');
+          }
           update();
           Get.offAllNamed(AuthScreen.routeName);
         } else if (response.statusCode == 404) {
@@ -102,5 +111,13 @@ class AuthController extends NetworkManager {
     } else {
       return {};
     }
+  }
+
+  logoutUser() {
+    _getStorage.remove('user');
+    currentUserData = _getStorage.read('user') ?? {};
+    update();
+    displayToastMessage('Logout');
+    Get.offAllNamed(AuthScreen.routeName);
   }
 }

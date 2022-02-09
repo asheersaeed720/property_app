@@ -1,5 +1,6 @@
 import 'package:dropdown_search/dropdown_search.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:property_app/utils/app_theme.dart';
 import 'package:property_app/widgets/custom_async_btn.dart';
 
@@ -40,8 +41,17 @@ class _PropertyFilterScreenState extends State<PropertyFilterScreen> {
         iconTheme: const IconThemeData(color: Colors.black87),
         actions: [
           Padding(
-            padding: const EdgeInsets.only(right: 18.0),
-            child: InkWell(onTap: () {}, child: const Text('Reset')),
+            padding: const EdgeInsets.only(top: 19.0, right: 24.0),
+            child: InkWell(
+              onTap: () {},
+              child: const Text(
+                'Reset',
+                style: TextStyle(
+                  color: AppTheme.primary,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ),
           ),
         ],
       ),
@@ -49,8 +59,8 @@ class _PropertyFilterScreenState extends State<PropertyFilterScreen> {
         padding: const EdgeInsets.all(12.0),
         children: <Widget>[
           _buildToggleBtnView(),
-          const SizedBox(height: 28.0),
-          _buildCityDropDownView(),
+          // const SizedBox(height: 28.0),
+          // _buildCityDropDownView(),
           const SizedBox(height: 28.0),
           _buildLocationDropDownView(),
           const SizedBox(height: 28.0),
@@ -60,7 +70,9 @@ class _PropertyFilterScreenState extends State<PropertyFilterScreen> {
           const SizedBox(height: 28.0),
           CustomAsyncBtn(
             btntxt: 'Search Properties',
-            onPress: () {},
+            onPress: () {
+              Get.back();
+            },
           )
         ],
       ),
@@ -70,11 +82,11 @@ class _PropertyFilterScreenState extends State<PropertyFilterScreen> {
   Widget _buildToggleBtnView() {
     return ToggleButtons(
       borderColor: Colors.grey,
-      fillColor: AppTheme.primary,
+      // fillColor: AppTheme.primary,
       borderWidth: 1,
       borderRadius: BorderRadius.circular(4.0),
       selectedBorderColor: Colors.grey,
-      selectedColor: Colors.white,
+      // selectedColor: Colors.white,
       children: <Widget>[
         Container(
           width: MediaQuery.of(context).size.width / 2.2,

@@ -23,156 +23,158 @@ class _LogInSignUpScreenState extends State<LogInSignUpScreen> {
 
   bool isSignupScreen = true;
   bool isMale = true;
-  bool isRememberMe = false;
+  // bool isRememberMe = false;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppTheme.backgroundColor,
-      body: Stack(
-        children: [
-          Positioned(
-            top: 0,
-            right: 0,
-            left: 0,
-            child: Container(
-              height: 300,
-              decoration: const BoxDecoration(
-                  image: DecorationImage(
-                      image: AssetImage("assets/images/login_background.jpg"), fit: BoxFit.fill)),
+      body: GetBuilder<AuthController>(
+        builder: (_) => Stack(
+          children: [
+            Positioned(
+              top: 0,
+              right: 0,
+              left: 0,
               child: Container(
-                padding: const EdgeInsets.only(top: 90, left: 20),
-                color: const Color(0xFF3b5999).withOpacity(.85),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    RichText(
-                      text: TextSpan(
-                          text: !isSignupScreen ? "Welcome" : "Welcome to",
-                          style: TextStyle(
-                            fontSize: 22.0,
-                            letterSpacing: 2,
-                            color: Colors.yellow[700],
-                          ),
-                          children: [
-                            TextSpan(
-                              text: isSignupScreen ? " Softo Property," : " Back,",
-                              style: TextStyle(
-                                fontSize: 22.0,
-                                fontWeight: FontWeight.bold,
-                                color: Colors.yellow[700],
-                              ),
-                            )
-                          ]),
-                    ),
-                    const SizedBox(
-                      height: 5,
-                    ),
-                    Text(
-                      isSignupScreen ? "Sign Up to Continue" : "Sign In to Continue",
-                      style: const TextStyle(
-                        letterSpacing: 1,
-                        color: Colors.white,
+                height: 300,
+                decoration: const BoxDecoration(
+                    image: DecorationImage(
+                        image: AssetImage("assets/images/login_background.jpg"), fit: BoxFit.fill)),
+                child: Container(
+                  padding: const EdgeInsets.only(top: 90, left: 20),
+                  color: const Color(0xFF3b5999).withOpacity(.85),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      RichText(
+                        text: TextSpan(
+                            text: !isSignupScreen ? "Welcome" : "Welcome to",
+                            style: TextStyle(
+                              fontSize: 22.0,
+                              letterSpacing: 2,
+                              color: Colors.yellow[700],
+                            ),
+                            children: [
+                              TextSpan(
+                                text: isSignupScreen ? " Softo Property," : " Back,",
+                                style: TextStyle(
+                                  fontSize: 22.0,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.yellow[700],
+                                ),
+                              )
+                            ]),
                       ),
-                    )
-                  ],
+                      const SizedBox(
+                        height: 5,
+                      ),
+                      Text(
+                        isSignupScreen ? "Sign Up to Continue" : "Sign In to Continue",
+                        style: const TextStyle(
+                          letterSpacing: 1,
+                          color: Colors.white,
+                        ),
+                      )
+                    ],
+                  ),
                 ),
               ),
             ),
-          ),
-          // Trick to add the shadow for the submit button
-          buildBottomHalfContainer(true),
-          //Main Contianer for Login and Signup
-          AnimatedPositioned(
-            duration: const Duration(milliseconds: 400),
-            // curve: Curves.bounceInOut,
-            top: isSignupScreen ? 200 : 230,
-            child: AnimatedContainer(
+            // Trick to add the shadow for the submit button
+            buildBottomHalfContainer(true),
+            //Main Contianer for Login and Signup
+            AnimatedPositioned(
               duration: const Duration(milliseconds: 400),
               // curve: Curves.bounceInOut,
-              height: isSignupScreen ? 380 : 250,
-              padding: const EdgeInsets.all(16),
-              width: MediaQuery.of(context).size.width - 40,
-              margin: const EdgeInsets.symmetric(horizontal: 20),
-              decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(15),
-                  boxShadow: [
-                    BoxShadow(
-                        color: Colors.black.withOpacity(0.3), blurRadius: 15, spreadRadius: 5),
-                  ]),
-              child: SingleChildScrollView(
-                child: Column(
-                  children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      children: [
-                        GestureDetector(
-                          onTap: () {
-                            setState(() {
-                              isSignupScreen = false;
-                            });
-                          },
-                          child: Column(
-                            children: [
-                              Text(
-                                "LOGIN",
-                                style: TextStyle(
-                                    fontSize: 16,
-                                    fontWeight: FontWeight.bold,
-                                    color: !isSignupScreen
-                                        ? AppTheme.activeColor
-                                        : AppTheme.textColor1),
-                              ),
-                              if (!isSignupScreen)
-                                Container(
-                                  margin: const EdgeInsets.only(top: 3),
-                                  height: 2,
-                                  width: 55,
-                                  color: Colors.orange,
-                                )
-                            ],
+              top: isSignupScreen ? 200 : 230,
+              child: AnimatedContainer(
+                duration: const Duration(milliseconds: 400),
+                // curve: Curves.bounceInOut,
+                height: isSignupScreen ? 380 : 250,
+                padding: const EdgeInsets.all(16),
+                width: MediaQuery.of(context).size.width - 40,
+                margin: const EdgeInsets.symmetric(horizontal: 20),
+                decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(15),
+                    boxShadow: [
+                      BoxShadow(
+                          color: Colors.black.withOpacity(0.3), blurRadius: 15, spreadRadius: 5),
+                    ]),
+                child: SingleChildScrollView(
+                  child: Column(
+                    children: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        children: [
+                          GestureDetector(
+                            onTap: () {
+                              setState(() {
+                                isSignupScreen = false;
+                              });
+                            },
+                            child: Column(
+                              children: [
+                                Text(
+                                  "LOGIN",
+                                  style: TextStyle(
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.bold,
+                                      color: !isSignupScreen
+                                          ? AppTheme.activeColor
+                                          : AppTheme.textColor1),
+                                ),
+                                if (!isSignupScreen)
+                                  Container(
+                                    margin: const EdgeInsets.only(top: 3),
+                                    height: 2,
+                                    width: 55,
+                                    color: Colors.orange,
+                                  )
+                              ],
+                            ),
                           ),
-                        ),
-                        GestureDetector(
-                          onTap: () {
-                            setState(() {
-                              isSignupScreen = true;
-                            });
-                          },
-                          child: Column(
-                            children: [
-                              Text(
-                                "SIGNUP",
-                                style: TextStyle(
-                                    fontSize: 16,
-                                    fontWeight: FontWeight.bold,
-                                    color: isSignupScreen
-                                        ? AppTheme.activeColor
-                                        : AppTheme.textColor1),
-                              ),
-                              if (isSignupScreen)
-                                Container(
-                                  margin: const EdgeInsets.only(top: 3),
-                                  height: 2,
-                                  width: 55,
-                                  color: Colors.orange,
-                                )
-                            ],
-                          ),
-                        )
-                      ],
-                    ),
-                    if (isSignupScreen) buildSignupSection(),
-                    if (!isSignupScreen) buildSigninSection()
-                  ],
+                          GestureDetector(
+                            onTap: () {
+                              setState(() {
+                                isSignupScreen = true;
+                              });
+                            },
+                            child: Column(
+                              children: [
+                                Text(
+                                  "SIGNUP",
+                                  style: TextStyle(
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.bold,
+                                      color: isSignupScreen
+                                          ? AppTheme.activeColor
+                                          : AppTheme.textColor1),
+                                ),
+                                if (isSignupScreen)
+                                  Container(
+                                    margin: const EdgeInsets.only(top: 3),
+                                    height: 2,
+                                    width: 55,
+                                    color: Colors.orange,
+                                  )
+                              ],
+                            ),
+                          )
+                        ],
+                      ),
+                      if (isSignupScreen) buildSignupSection(),
+                      if (!isSignupScreen) buildSigninSection()
+                    ],
+                  ),
                 ),
               ),
             ),
-          ),
 
-          buildBottomHalfContainer(false),
-        ],
+            buildBottomHalfContainer(false),
+          ],
+        ),
       ),
     );
   }
@@ -193,12 +195,11 @@ class _LogInSignUpScreenState extends State<LogInSignUpScreen> {
                 Row(
                   children: [
                     Checkbox(
-                      value: isRememberMe,
+                      value: _authController.isRememberMe,
                       activeColor: AppTheme.textColor2,
                       onChanged: (value) {
-                        setState(() {
-                          isRememberMe = !isRememberMe;
-                        });
+                        _authController.isRememberMe = !_authController.isRememberMe;
+                        _authController.update();
                       },
                     ),
                     const Text("Remember me",
@@ -279,64 +280,62 @@ class _LogInSignUpScreenState extends State<LogInSignUpScreen> {
                   )
               ]),
           child: !showShadow
-              ? GetBuilder<AuthController>(
-                  builder: (_) => _authController.isLoading
-                      ? const LoadingWidget()
-                      : Container(
-                          decoration: BoxDecoration(
-                              gradient: LinearGradient(colors: [
-                                Colors.orange.shade300,
-                                Colors.red.shade400,
-                              ], begin: Alignment.topLeft, end: Alignment.bottomRight),
-                              borderRadius: BorderRadius.circular(30),
-                              boxShadow: [
-                                BoxShadow(
-                                    color: Colors.black.withOpacity(.3),
-                                    spreadRadius: 1,
-                                    blurRadius: 2,
-                                    offset: const Offset(0, 1))
-                              ]),
-                          child: InkWell(
-                            onTap: () async {
-                              if (isSignupScreen) {
-                                if (_signUpKeyLogin.currentState!.validate()) {
-                                  _signUpKeyLogin.currentState!.save();
-                                  FocusScopeNode currentFocus = FocusScope.of(context);
-                                  if (!currentFocus.hasPrimaryFocus) {
-                                    currentFocus.unfocus();
-                                  }
-                                  _authController.isLoading = true;
-                                  await _authController.handleSignUp().catchError((_) {
-                                    _authController.isLoading = false;
-                                    _authController.update();
-                                  });
-                                  _authController.isLoading = false;
-                                  _authController.update();
-                                }
-                              } else {
-                                if (_formKeyLogin.currentState!.validate()) {
-                                  _formKeyLogin.currentState!.save();
-                                  FocusScopeNode currentFocus = FocusScope.of(context);
-                                  if (!currentFocus.hasPrimaryFocus) {
-                                    currentFocus.unfocus();
-                                  }
-                                  _authController.isLoading = true;
-                                  await _authController.handleLogIn().catchError((_) {
-                                    _authController.isLoading = false;
-                                    _authController.update();
-                                  });
-                                  _authController.isLoading = false;
-                                  _authController.update();
-                                }
+              ? _authController.isLoading
+                  ? const LoadingWidget()
+                  : Container(
+                      decoration: BoxDecoration(
+                          gradient: LinearGradient(colors: [
+                            Colors.orange.shade300,
+                            Colors.red.shade400,
+                          ], begin: Alignment.topLeft, end: Alignment.bottomRight),
+                          borderRadius: BorderRadius.circular(30),
+                          boxShadow: [
+                            BoxShadow(
+                                color: Colors.black.withOpacity(.3),
+                                spreadRadius: 1,
+                                blurRadius: 2,
+                                offset: const Offset(0, 1))
+                          ]),
+                      child: InkWell(
+                        onTap: () async {
+                          if (isSignupScreen) {
+                            if (_signUpKeyLogin.currentState!.validate()) {
+                              _signUpKeyLogin.currentState!.save();
+                              FocusScopeNode currentFocus = FocusScope.of(context);
+                              if (!currentFocus.hasPrimaryFocus) {
+                                currentFocus.unfocus();
                               }
-                            },
-                            child: const Icon(
-                              Icons.arrow_forward,
-                              color: Colors.white,
-                            ),
-                          ),
+                              _authController.isLoading = true;
+                              await _authController.handleSignUp().catchError((_) {
+                                _authController.isLoading = false;
+                                _authController.update();
+                              });
+                              _authController.isLoading = false;
+                              _authController.update();
+                            }
+                          } else {
+                            if (_formKeyLogin.currentState!.validate()) {
+                              _formKeyLogin.currentState!.save();
+                              FocusScopeNode currentFocus = FocusScope.of(context);
+                              if (!currentFocus.hasPrimaryFocus) {
+                                currentFocus.unfocus();
+                              }
+                              _authController.isLoading = true;
+                              await _authController.handleLogIn().catchError((_) {
+                                _authController.isLoading = false;
+                                _authController.update();
+                              });
+                              _authController.isLoading = false;
+                              _authController.update();
+                            }
+                          }
+                        },
+                        child: const Icon(
+                          Icons.arrow_forward,
+                          color: Colors.white,
                         ),
-                )
+                      ),
+                    )
               : const Center(),
         ),
       ),
@@ -361,7 +360,11 @@ class _LogInSignUpScreenState extends State<LogInSignUpScreen> {
   }
 
   Widget _buildEmailTextField() {
+    if (_authController.rememberEmail.isNotEmpty) {
+      _authController.userFormModel.email = _authController.rememberEmail;
+    }
     return TextFormField(
+      initialValue: _authController.userFormModel.email,
       onChanged: (value) {
         _authController.userFormModel.email = value;
       },
@@ -384,34 +387,32 @@ class _LogInSignUpScreenState extends State<LogInSignUpScreen> {
   }
 
   Widget _buildPasswordTextField() {
-    return GetBuilder<AuthController>(
-      builder: (_) => TextFormField(
-        onChanged: (value) {
-          _authController.userFormModel.password = value;
-        },
-        obscureText: _authController.obscureText,
-        validator: (value) {
-          if (value!.isEmpty) {
-            return 'Required';
-          } else if (_authController.userFormModel.password.length < 6) {
-            return 'Too short';
-          }
-          return null;
-        },
-        keyboardType: TextInputType.visiblePassword,
-        decoration: buildPasswordInputDecoration(
-          context,
-          suffixIcon: GestureDetector(
-            onTap: () {
-              _authController.obscureText = !_authController.obscureText;
-            },
-            child: Icon(
-              _authController.obscureText ? Icons.visibility : Icons.visibility_off,
-            ),
+    return TextFormField(
+      onChanged: (value) {
+        _authController.userFormModel.password = value;
+      },
+      obscureText: _authController.obscureText,
+      validator: (value) {
+        if (value!.isEmpty) {
+          return 'Required';
+        } else if (_authController.userFormModel.password.length < 6) {
+          return 'Too short';
+        }
+        return null;
+      },
+      keyboardType: TextInputType.visiblePassword,
+      decoration: buildPasswordInputDecoration(
+        context,
+        suffixIcon: GestureDetector(
+          onTap: () {
+            _authController.obscureText = !_authController.obscureText;
+          },
+          child: Icon(
+            _authController.obscureText ? Icons.visibility : Icons.visibility_off,
           ),
-          hintTxt: 'Password',
-          preffixIcon: Icons.lock_open_outlined,
         ),
+        hintTxt: 'Password',
+        preffixIcon: Icons.lock_open_outlined,
       ),
     );
   }

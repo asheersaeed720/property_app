@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:property_app/src/auth/views/login_signup_screen.dart';
+import 'package:property_app/src/auth/auth_controller.dart';
 import 'package:property_app/src/profile/user_profile_screen.dart';
 import 'package:property_app/utils/app_theme.dart';
 import 'package:property_app/utils/custom_dialog.dart';
@@ -34,7 +34,7 @@ AppBar customAppBar(context, appBarTxt, {color = Colors.white}) {
               'Logout',
               'Are you sure you want to logout!',
               () {
-                Get.offAndToNamed(LogInSignUpScreen.routeName);
+                Get.find<AuthController>().logoutUser();
               },
             );
           }
