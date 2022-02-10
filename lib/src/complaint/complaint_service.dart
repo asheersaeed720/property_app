@@ -19,9 +19,9 @@ class ComplaintService extends GetConnect {
     );
   }
 
-  Future<Response> createComplaint(String title, String desc, String category) async {
+  Future<Response> createComplaint(String title, String desc, String categoryId) async {
     var complaintFormData = FormData({
-      'category_id': '1',
+      'category_id': categoryId,
       'title': title,
       'description': desc,
     });

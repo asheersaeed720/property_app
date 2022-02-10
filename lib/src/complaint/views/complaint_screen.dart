@@ -82,21 +82,20 @@ class _ComplaintScreenState extends State<ComplaintScreen> {
                       //   borderSide: const BorderSide(style: BorderStyle.none, width: 0),
                       // ),
                       isDense: true,
-                      hintText: 'Complaint Description',
+                      hintText: 'Complaint type',
                       hintStyle: Theme.of(context)
                           .textTheme
                           .headline2!
                           .copyWith(fontSize: 12, color: Colors.grey),
                       filled: true,
-                      // prefixIconConstraints: const BoxConstraints(minWidth: 23, maxHeight: 20),
                     ),
                     mode: Mode.MENU,
                     items: (_complaintController.complaintCategoryList).map((e) {
-                      return e.name ?? '';
+                      return '${e.id}. ' '${e.name}';
                     }).toList(),
-                    // popupItemDisabled: (String s) => s.startsWith('I'),
                     onChanged: (value) {
-                      // complaintCategoryId.text = value?.id ?? '';
+                      String id = value?.replaceAll(RegExp(r'[^0-9]'), '') ?? '';
+                      complaintCategoryId.text = id;
                     },
                     // selectedItem: _complaintController.complaintCategoryList.first.name,
                   ),
