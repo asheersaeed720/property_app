@@ -26,7 +26,7 @@ class PropertyService extends GetConnect {
     );
   }
 
-  Future<Response> getSearchableProperties(String userId) async {
+  Future<Response> getSearchableProperties({String userId = ''}) async {
     return get(
       '$apiURL/Properties/search',
       headers: {'x-api-key': '${_authController.currentUserData['key']}'},

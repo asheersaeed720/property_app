@@ -100,7 +100,7 @@ class PropertyController extends GetxController {
 
   Future<List<PropertyModel>> getSearchableProperties(String userId) async {
     try {
-      var response = await _propertyService.getSearchableProperties(userId);
+      var response = await _propertyService.getSearchableProperties(userId: userId);
       log(response.body.toString());
       if (response.statusCode == 200) {
         var responseJson = response.body;

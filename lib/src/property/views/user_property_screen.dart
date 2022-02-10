@@ -33,15 +33,15 @@ class _UserPropertyScreenState extends State<UserPropertyScreen> {
         backgroundColor: Theme.of(context).backgroundColor,
         body: FutureBuilder<List<PropertyModel>>(
           future:
-              _propertyController.getSearchableProperties(_authController.currentUserData['key']),
+              _propertyController.getSearchableProperties(_authController.currentUserData['id']),
           builder: (context, snapshot) {
             if (!snapshot.hasError) {
               List<PropertyModel> propertiesList = snapshot.data ?? [];
-              if (propertiesList.isEmpty) {
-                return const Center(
-                  child: Text('No Properties Available'),
-                );
-              }
+              // if (propertiesList.isEmpty) {
+              //   return const Center(
+              //     child: Text('No Properties Available'),
+              //   );
+              // }
               return CustomScrollView(
                 slivers: [
                   const SliverAppBar(
@@ -173,6 +173,8 @@ class _UserPropertyScreenState extends State<UserPropertyScreen> {
                   ),
                 ],
               );
+            } else if (snapshot.hasError) {
+              return Text('${snapshot.error}');
             }
             return const PropertiesListLoading();
           },

@@ -42,7 +42,9 @@ class PropertyModel {
         createdAt: DateTime.parse(json["created_at"]),
         type: json["type"],
         location: json["location"],
-        images: List<PropertyImage>.from(json["images"].map((x) => PropertyImage.fromJson(x))),
+        images: !json.containsKey('images')
+            ? []
+            : List<PropertyImage>.from(json["images"].map((x) => PropertyImage.fromJson(x))),
       );
 
   Map<String, dynamic> toJson() => {
